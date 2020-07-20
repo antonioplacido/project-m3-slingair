@@ -71,13 +71,13 @@ input {
   margin: 0 auto;
 }
 .header-logo {
-  background-image: url(../images/air-sling.png), url(../images/logo_text.png);
+  background-image: url(../images/spacejam.png), url(../images/lazybugs.png);
   background-repeat: no-repeat;
   background-position: left center, right center;
   background-size: contain;
   overflow: hidden;
   text-indent: -1000px;
-  height: 60px;
+  height: 100px;
   width: 550px;
 }
 .flight-select {
@@ -91,6 +91,14 @@ input {
 .flight-select input {
   width: 125px;
   margin-left: var(--page-padding);
+}
+
+input {
+  font-size: 24px;
+  height: 42px;
+  border: 2px solid var(--orange);
+  border-radius: 4px;
+  padding: 0 12px;
 }
 
 input {

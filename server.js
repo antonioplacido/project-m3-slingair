@@ -4,12 +4,11 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const {
   plainPlaneArray,
-  handleflight,
-  fillFlightArray,
-  handlePostReserve,
-  handleGetReserve,
+  handleFlight,
+  handleRezconfirm,
+  handleGetRez,
   clientConfirm,
-  handleInfoPage,
+  informationPage,
 } = require("./handlers/handles");
 const PORT = process.env.PORT || 8000;
 express()
@@ -27,12 +26,11 @@ express()
   .use(express.urlencoded({ extended: false }))
   .set("view engine", "ejs")
   // endpoints
-  .get("/flights", plainPlaneArray)
-  .get("/flights/:flightID", handleflight)
-  .get("/test", fillFlightArray)
-  .post("/users", handlePostReserve)
-  .get("/users", handleGetReserve)
+  .get("/flights", plainPlaneArray) // just plain array of flights
+  .get("/flights/:flightID", handleFlight) // Contains the array of the flight with all seats, with properties ID & isAvailable
+  .post("/users", handleRezconfirm) // Will post reservation confirmation
+  .get("/users", handleGetRez) // Will display all current reservations
   .get("/:id", clientConfirm)
-  .get("/info/:id", handleInfoPage) // End point to determine the Reservation ID confirmation
+  .get("/info/:id", informationPage) // End point to determine the Reservation ID confirmation
   .use((req, res) => res.send("Not Found"))
   .listen(PORT, () => console.log(`Listening on port 8000`));

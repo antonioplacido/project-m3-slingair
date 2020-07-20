@@ -12,22 +12,22 @@
   <body>
     <div class="main">
       <header class="header">
-        <h1 class="header-logo">Air Slingshot</h1>
+        <h1 class="header-logo">Spacejam Airlines</h1>
       </header>
       <div class="flight-reserve">
-        <label for="emailcheck">Already book? Enter your ID here!</label>
+        <label for="emailcheck">Already booked? Enter your ID here!</label>
         <input type="text" id="idInput" name="username" />
         <input
           type="submit"
           value="Submit"
-          id="bouton-verif"
+          id="verify"
           onsubmit="handleConfirmSeat(event)"
         />
       </div>
       <div class="flight-select">
         <label for="flight">Flight Number :</label>
         <select name="flight" id="flight" class="flight" placeholder="flight #">
-          <option>Choose a flight!</option>
+          <option class="flightselect">Choose a flight!</option>
         </select>
       </div>
       <div class="form-container">

@@ -1,12 +1,12 @@
 const flightInput = document.getElementById("flight");
 const seatsDiv = document.getElementById("seats-section");
 const confirmButton = document.getElementById("confirm-button");
-const idButton = document.getElementById("bouton-verif");
+const idButton = document.getElementById("verify");
 let selection = "";
 let randomNumber = Math.floor(Math.random() * 6000) + 1;
 let failnumber = randomNumber + 1;
 console.log(randomNumber);
-function getFlightNumbers() {
+function processFlights() {
   fetch("/flights")
     .then((resp) => resp.json())
     .then((flights) => {
@@ -110,4 +110,4 @@ function handleCheckReservation(event) {
 idButton.addEventListener("click", handleCheckReservation);
 flightInput.addEventListener("change", toggleFormContent);
 confirmButton.addEventListener("onClick", handleConfirmSeat);
-getFlightNumbers();
+processFlights();

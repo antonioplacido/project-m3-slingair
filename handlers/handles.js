@@ -6,10 +6,6 @@ function findClient(email) {
 function findID(id) {
   return reservations.find((client) => client.id === id); //Looksup the provided ID inside the reservations with the user input as the id
 }
-function fillFlightArray() {
-  let newArray = Object.keys(flights);
-  console.log(newArray);
-}
 function findFlight(flightNumber) {
   return flights[flightNumber];
 }
@@ -17,9 +13,9 @@ function plainPlaneArray(req, res) {
   /// This function returns the json'd array of flights - [SA123, SA231, SA666]
   res.status(200).json(Object.keys(flights));
 }
-function handleflight(req, res) {
+function handleFlight(req, res) {
   const flightNo = req.params.flightID;
-  const flightcheck = findFlight(flightNo); // reference to the findFlight function to return the array with the flightID in question
+  const flightcheck = findFlight(flightNo); // reference to the findFlight function to return the array with the flightID
   console.log(flightNo);
   if (flightcheck === undefined) {
     res.status(404).send("Grounded");
@@ -27,17 +23,17 @@ function handleflight(req, res) {
     res.status(200).json(flightcheck);
   }
 }
-function handleGetReserve(req, res) {
+function handleGetRez(req, res) {
   res.status(200).json(reservations);
   console.log(reservations);
 }
-function handlePostReserve(req, res) {
+function handleRezconfirm(req, res) {
   const clientEmail = req.body.email;
   const client = findClient(clientEmail);
   const newclient = req.body;
   console.log(newclient);
   if (client) {
-    console.log("we have an emaiil");
+    console.log("we have an email");
     res.status(404).send("404");
   } else {
     console.log("200");
@@ -54,10 +50,10 @@ function clientConfirm(req, res) {
   if (bookedClient !== undefined) {
     res.render("./pages/confirm", { client: bookedClient });
   } else {
-    res.render("./pages/reserror");
+    res.render("./pages/rerror");
   }
 }
-function handleInfoPage(req, res) {
+function informationPage(req, res) {
   const confirmID = req.params.id;
   console.log(confirmID);
   const bookedClient = findID(confirmID);
@@ -72,10 +68,9 @@ function handleInfoPage(req, res) {
 }
 module.exports = {
   plainPlaneArray,
-  handleflight,
-  fillFlightArray,
-  handlePostReserve,
-  handleGetReserve,
+  handleFlight,
+  handleRezconfirm,
+  handleGetRez,
   clientConfirm,
-  handleInfoPage,
+  informationPage,
 };
